@@ -1,0 +1,60 @@
+
+/************************************************************************************************
+************************************       FUNCTION       ***************************************
+************************************************************************************************/
+
+FUNCTION dot_product(v1: ARRAY_OF INTEGER[], v2: ARRAY_OF INTEGER[]) : BOOLEAN
+VAR
+    ps, i: INTEGER;
+    orthogonal: BOOLEAN;
+BEGIN
+
+    orthogonal:= false;
+    ps:=0;
+
+    REPEAT
+        write("your vectors must have the same length");
+    UNTIL (v1.length<>v2.length)
+
+    FOR i FROM 0 TO v1.length-1 DO
+            ps:=ps+v1[i]*v2[i];
+    END_FOR
+
+    IF (ps==0) THEN
+        orthogonal=true;
+    END_IF
+
+    RETURN orthogonal ;
+
+END
+
+
+/************************************************************************************************
+************************************       ALGORITHM       **************************************
+************************************************************************************************/
+
+ALGORITHM DotProduct
+VAR
+    V: ARRAY_OF VECTORS[];
+    i, n: INTEGER;
+    test:BOOLEAN;
+BEGIN
+
+    REPEAT
+        write("Enter number of vectors, it must be even");
+        read(n);
+    UNTIL (n % 2 == 0)
+
+    FOR i FROM 0 TO n-1 STEP 2  DO
+
+        test:=dot_product(V[i],V[i+1])
+
+        IF (test) THEN
+            write("Your vectors", V[i] ," and", V[i+1] ,"are orthogonal");
+        ELSE
+            write("Your vectors", V[i] ," and", V[i+1] ,"are not orthogonal");
+        END_IF
+        
+    END_FOR
+
+END
